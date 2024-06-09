@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="card">
+    <h2>Aeropuerto con más movimientos</h2>
+    <div class="content" *ngIf="airportWithMaxMovement">
+      <p>ID: {{ airportWithMaxMovement.id_aeropuerto }}</p>
+      <p>Nombre: {{ airportWithMaxMovement.nombre_aeropuerto }}</p>
+      <p>Total Movimientos: {{ airportWithMaxMovement.total_movements }}</p>
+    </div>
+    <div class="loading" *ngIf="!airportWithMaxMovement">
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Aerolínea con más vuelos</h2>
+    <div class="content" *ngIf="airlineWithMaxFlights">
+      <p>ID: {{ airlineWithMaxFlights.id_aerolinea }}</p>
+      <p>Nombre: {{ airlineWithMaxFlights.nombre_aerolinea }}</p>
+      <p>Total Vuelos: {{ airlineWithMaxFlights.total_flights }}</p>
+    </div>
+    <div class="loading" *ngIf="!airlineWithMaxFlights">
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Día con más vuelos</h2>
+    <div class="content" *ngIf="dayWithMaxFlights">
+      <p>Día: {{ dayWithMaxFlights.flight_day }}</p>
+      <p>Total Vuelos: {{ dayWithMaxFlights.total_flights }}</p>
+    </div>
+    <div class="loading" *ngIf="!dayWithMaxFlights">
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Aerolíneas con más de dos vuelos por día</h2>
+    <div class="content" *ngIf="airlinesWithMoreThanTwoFlights.length > 0">
+      <ul>
+        <li *ngFor="let airline of airlinesWithMoreThanTwoFlights">
+          {{ airline.nombre_aerolinea }} 
+        </li>
+      </ul>
+    </div>
+    <div class="loading" *ngIf="airlinesWithMoreThanTwoFlights.length === 0">
+      <p>Cargando...</p>
+    </div>
+  </div>
+  <div class="boton">
+    <button id="goToFlight" [routerLink]="['/']">Ir al inicio..</button>
+  </div>
+</div>
