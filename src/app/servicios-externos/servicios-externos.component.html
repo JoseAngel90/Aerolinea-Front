@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Resultados de la Búsqueda en Stack Exchange</h2>
+  <div class="search-bar">
+    <button id="goToFlight" [routerLink]="['/flight']">Ir a los vuelos</button>
+  </div>
+
+  <div *ngIf="results.length > 0; else noResults">
+    <div class="stats">
+      <h3>Estadísticas</h3>
+      <p>Respuestas Contestadas: {{ answeredCount }}</p>
+      <p>Respuestas No Contestadas: {{ unansweredCount }}</p>
+    </div>
+    <hr>
+    <ng-container *ngIf="highestReputationAnswer">
+      <h3>Respuesta con Mayor Reputación</h3>
+      <p>Nombre del Dueño: {{ highestReputationAnswer.owner.display_name }}</p>
+      <p>Reputación: {{ highestReputationAnswer.owner.reputation }}</p>
+    </ng-container>
+    <hr>
+    <ng-container *ngIf="leastViewedAnswer">
+      <h3>Respuesta con Menor Número de Vistas</h3>
+      <p>Nombre del Dueño: {{ leastViewedAnswer.owner.display_name }}</p>
+      <p>Vistas: {{ leastViewedAnswer.view_count }}</p>
+    </ng-container>
+    <hr>
+    <ng-container *ngIf="oldestAnswer">
+      <h3>Respuesta Más Antigua</h3>
+      <p>Nombre del Dueño: {{ oldestAnswer.owner.display_name }}</p>
+      <p>Fecha de Creación: {{ formateofecha(oldestAnswer.creation_date) }}</p>
+    </ng-container>
+    <hr>
+    <ng-container *ngIf="newestAnswer">
+      <h3>Respuesta Más Reciente</h3>
+      <p>Nombre del Dueño: {{ newestAnswer.owner.display_name }}</p>
+      <p>Fecha de Creación: {{ formateofecha(newestAnswer.creation_date) }}</p>
+    </ng-container>
+  </div>
+  
+  <ng-template #noResults>
+    <div>
+      <p>No se encontraron resultados.</p>
+    </div>
+  </ng-template>
+</div>
